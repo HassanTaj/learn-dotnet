@@ -405,3 +405,5 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 .vscode/
+/GraphQL_Angular_Subscriptions_V7_6_0/TodoClient/.angular/cache/16.2.0
+/GraphQL_Angular_Subscriptions_V7_6_0/TodoClient/package-lock.json
