@@ -42,6 +42,11 @@ app.UseGraphQLPlayground("/graph/cats",
         SubscriptionsEndPoint = "../cats/graphql",
     });
 
+app.UseGraphQLAltair("/graph/cats/alt",
+    new GraphQL.Server.Ui.Altair.AltairOptions {
+        GraphQLEndPoint = "../cats/graphql",
+        SubscriptionsEndPoint = "../cats/graphql",
+    });
 
 app.UseCors(con => {
     con.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
@@ -49,14 +54,14 @@ app.UseCors(con => {
 // configure the graphql endpoint at "/cats/graphql"
 app.UseGraphQL<TodoSchema>("/todos/graphql");
 // configure Playground at "/cats/ui/playground" with relative link to api
-app.UseGraphQLAltair("/graph/todos/alt",
+app.UseGraphQLAltair("/graph/todos",
     new GraphQL.Server.Ui.Altair.AltairOptions {
         GraphQLEndPoint = "../todos/graphql",
         SubscriptionsEndPoint = "../todos/graphql",
     });
 
 app.UseGraphQLPlayground(
-    "/graph/todos",
+    "/graph/todos/alt",
     new GraphQL.Server.Ui.Playground.PlaygroundOptions {
         GraphQLEndPoint = "../todos/graphql",
         SubscriptionsEndPoint = "../todos/graphql",

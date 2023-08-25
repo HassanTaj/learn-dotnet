@@ -1,0 +1,142 @@
+export const HTTPSERVICESETTINGS = new InjectionToken('http-service-settings');
+
+function createApollo(httpLink: HttpLink) {
+  const basic = setContext((operation, context) => ({
+    headers: {
+      Accept: 'charset=utf-8',
+    },
+  }));
+
+  const auth = setContext((operation, context) => {
+    const token = localStorage.getItem('access_token');
+
+    if (token === null) {
+      return {};
+    } else {
+      return {
+        headers: {
+          Authorization: `${token}`,
+        },
+      };
+    }
+  });
+
+  const httplink = ApolloLink.from([basic, auth, httpLink.create({ uri: environment.ChatAPIUrl })]);
+
+  const api_header = {
+    host: environment.ChatAPIHost,
+    Authorization: localStorage.getItem('access_token')
+  };
+  const payload = {};
+  const base64_api_header = btoa(JSON.stringify(api_header));
+  const base64_payload = btoa(JSON.stringify(payload));
+
+  let wslink = new CustomWebSocketLink(`${environment.ChatAPIRealTimeUrl}?header=${base64_api_header}&payload=${base64_payload}`, {
+    reconnect: true,
+  });
+
+  const linkA = split(
+    ({ query }) => {
+      const d = getMainDefinition(query);
+      return d.kind === 'OperationDefinition' && d.operation === 'subscription';
+    },
+    wslink,
+    httplink,
+  );
+
+  const link = ApolloLink.from([basic, auth, linkA]);
+  const cache = new InMemoryCache();
+
+  return {
+    link,
+    cache,
+  };
+}
+
+class CustomWebSocketLink extends ApolloLink {
+  private subscriptionClient: SubscriptionClient;
+
+  constructor(endpoint: string, options?: any) {
+    super();
+
+    this.subscriptionClient = new SubscriptionClient(endpoint, options);
+  }
+
+  override request(operation: Operation, forward?: NextLink): Observable<any> {
+    return new Observable((observer) => {
+      const { operationName } = operation;
+      const payload = {
+        ...operation,
+        // query: operation.query.loc?.source.body,
+        // variables: operation.variables,
+        data: JSON.stringify({query: operation.query.loc?.source.body, variables: operation.variables}),
+        extensions: {
+          authorization: {
+            Authorization: localStorage.getItem('access_token'),
+            host: environment.ChatAPIHost
+          }
+        }
+      };
+
+      const sub = this.subscriptionClient.request(payload).subscribe({
+        next: (data) => {
+          observer.next(data);
+        },
+        error: (error) => {
+          observer.error(error);
+        },
+        complete: () => {
+          observer.complete();
+        },
+      });
+
+      return () => {
+        if (sub) {
+          sub.unsubscribe();
+        }
+      };
+    });
+  }
+}
+
+
+
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    RouterModule.forRoot(appRoutes,
+      { preloadingStrategy: PreloadAllModules, onSameUrlNavigation: 'reload' }
+    ),
+    BrowserModule,
+    HttpClientModule,
+    CommonModule,
+    OAuthModule.forRoot(),
+    HttpClientModule,
+    BrowserAnimationsModule,
+    SharedModule,
+    UserManagementModule,
+    CoreModule,
+    ClientModule,
+    NgIdleKeepaliveModule.forRoot(),
+    ToastModule,
+    ApolloModule
+  ],
+  providers: [
+    {
+      provide: "EnvironmentVariables", useValue: environment
+    },
+    {
+      provide : LocalStorageExpiry
+    },
+    {
+      provide: APOLLO_OPTIONS,
+      useFactory: createApollo,
+      deps: [HttpLink],
+    },
+    AuditLogService, AccessLogService
+  ],
+  entryComponents: [AppComponent]
+})

@@ -22,19 +22,29 @@ export class TodosComponent {
           createdOn
         }
       }`
+    }).subscribe({
+      next:(result:any)=>{
+          this.todos.push(result.data.todos);
+      },
+      error:(err)=>{
+
+      },
+      complete:()=>{
+
+      }
     });
 
-    this.apollo.query({
-      query: gql`query getTodos{
-        todos {
-          id
-          task
-          createdOn
-        }
-      }`
-    }).subscribe((observer: any) => {
-      this.todos = observer.data.todos;
-    });
+    // this.apollo.query({
+    //   query: gql`query getTodos{
+    //     todos {
+    //       id
+    //       task
+    //       createdOn
+    //     }
+    //   }`
+    // }).subscribe((observer: any) => {
+    //   this.todos = observer.data.todos;
+    // });
   }
 
   onSubmit(submit: SubmitEvent) {
