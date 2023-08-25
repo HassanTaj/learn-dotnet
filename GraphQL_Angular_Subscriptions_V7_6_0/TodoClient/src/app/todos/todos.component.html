@@ -1,0 +1,47 @@
+<div class="card bg-dark h-100vh">
+  <div class="card-body">
+    <h4 class="card-title text-white">Todos</h4>
+
+    <div class="table-responsive">
+      <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Task</th>
+            <th scope="col">Created On</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="" *ngFor="let t of todos">
+            <td scope="row">{{t.id}}</td>
+            <td>{{t.task}}</td>
+            <td>{{t.createdOn | date:'dd-MMM-YYYY'}}</td>
+            <td>
+
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+
+      <form class="d-flex" #form="ngForm" (ngSubmit)="onSubmit($event)">
+        <div class="col">
+          <div class="input-group has-validation mb-3 ">
+            <input name="task" id="task" [ngClass]="{'is-invalid':(taskInp.control.touched && !taskInp.control.valid)}"
+              type="text" class="form-control bg-dark text-white" placeholder="Enter a task" [(ngModel)]="model.task" #taskInp="ngModel"
+              required="true" />
+            <button class="btn btn-outline-primary" type="submit" id="">Save</button>
+            <div class="invalid-feedback">
+              <ul>
+                <li *ngIf="taskInp.control.hasError('required')"> This Field is Required</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>

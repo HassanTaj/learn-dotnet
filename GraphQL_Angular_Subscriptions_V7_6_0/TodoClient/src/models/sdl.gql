@@ -1,0 +1,29 @@
+type Query {
+  todos: [Todo!]!
+  todo(id: ID!): Todo
+}
+
+type Todo {
+  id: Int!
+  task: String
+  createdOn: DateTime!
+}
+
+"""
+The `DateTime` scalar type represents a date and time. `DateTime` expects timestamps to be formatted in accordance with the [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) standard.
+"""
+scalar DateTime
+
+type Mutation {
+  save(inp: TodoInput!): Todo!
+  remove(id: ID!): Todo
+}
+
+input TodoInput {
+  id: Int
+  task: String
+}
+
+type Subscription {
+  todos: Todo!
+}
