@@ -16,8 +16,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>(ServiceLifetime.Scoped, ServiceLifetime.Scoped);
 builder.Services.AddScoped<AppDbContext>();
 builder.Services.AddScoped<CatsData>();
-builder.Services.TryAddSingleton<IEventService<Todo>,EventService<Todo>>();
 builder.Services.TryAddSingleton<IChatService,ChatService>();
+builder.Services.TryAddSingleton<IEventService<Todo>,EventService<Todo>>();
 
 builder.Services.AddCors();
 

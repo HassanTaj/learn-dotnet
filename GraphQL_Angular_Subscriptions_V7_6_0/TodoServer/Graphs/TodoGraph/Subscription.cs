@@ -7,7 +7,7 @@ namespace TodoServer.Graphs.TodoGraph
     public class Subscription {
 
         public static IObservable<IEnumerable<Todo>> Todos([FromServices] IEventService<Todo> eventService) {
-            return eventService.SubscribeList(EventTypes.Read,EventTypes.Create,EventTypes.Update,EventTypes.Delete);
+            return eventService.Subscribe(EventTypes.Read,EventTypes.Create,EventTypes.Update,EventTypes.Delete);
         }
 
         public static IObservable<IEnumerable<Todo>> GetAll([FromServices] IEventService<Todo> eventService)

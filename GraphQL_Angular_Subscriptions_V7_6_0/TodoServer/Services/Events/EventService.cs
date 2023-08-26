@@ -88,11 +88,6 @@ namespace TodoServer.Services.Events {
 
         public IObservable<Event<EventTypes, TModel>> SubscribeEvents() => _broadcaster;
 
-        public virtual bool Init() {
-            return true;
-        }
-
-
         public int Count {
             get {
                 lock (_items)
