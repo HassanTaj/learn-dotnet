@@ -32,7 +32,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "graph/todos",
+      "launchUrl": "graph/chat",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

@@ -1,17 +1,16 @@
 ﻿using GraphQL;
-using TodoServer.Data;
 using TodoServer.Models;
+using TodoServer.Services.Events;
 
-namespace TodoServer.Graphs.TodoGraph {
+namespace TodoServer.Graphs.TodoGraph
+{
     public class Query {
 
-        public static IEnumerable<Todo> Todos([FromServices] AppDbContext db,[FromServices] TodoService todoService) {
-            todoService.Init(db);
-            return db.Todos.ToList();
+        public static IEnumerable<Todo> Todos([FromServices] IEventService<Todo> eventService) {
+            return eventService.GetAll();
         }
 
-        public static Todo? Todo([FromServices] AppDbContext db, [Id] int id)
-      => db.Todos.FirstOrDefault(x => x.Id == id);
+        public static Todo? Todo([FromServices] IEventService<Todo> eventService, [Id] int id) => eventService.GetAll().FirstOrDefault(x => x.Id == id);
 
     }
 }

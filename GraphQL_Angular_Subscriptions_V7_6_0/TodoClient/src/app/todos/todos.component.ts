@@ -15,7 +15,7 @@ export class TodosComponent {
 
   constructor(private apollo: Apollo) {
     this.apollo.subscribe({
-      query:gql`subscription todos {
+      query: gql`subscription todos {
         todos {
           id
           task
@@ -23,28 +23,29 @@ export class TodosComponent {
         }
       }`
     }).subscribe({
-      next:(result:any)=>{
-          this.todos.push(result.data.todos);
+      next: (result: any) => {
+        this.todos = [];
+        this.todos.push(... result.data.todos);
       },
-      error:(err)=>{
+      error: (err) => {
 
       },
-      complete:()=>{
+      complete: () => {
 
       }
     });
 
-    // this.apollo.query({
-    //   query: gql`query getTodos{
-    //     todos {
-    //       id
-    //       task
-    //       createdOn
-    //     }
-    //   }`
-    // }).subscribe((observer: any) => {
-    //   this.todos = observer.data.todos;
-    // });
+    this.apollo.query({
+      query: gql`query getTodos{
+        todos {
+          id
+          task
+          createdOn
+        }
+      }`
+    }).subscribe((observer: any) => {
+      this.todos = observer.data.todos;
+    });
   }
 
   onSubmit(submit: SubmitEvent) {

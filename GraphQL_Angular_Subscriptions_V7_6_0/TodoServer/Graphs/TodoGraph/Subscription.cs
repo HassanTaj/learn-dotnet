@@ -1,12 +1,19 @@
 ﻿using GraphQL;
-using TodoServer.Data;
 using TodoServer.Models;
+using TodoServer.Services.Events;
 
-namespace TodoServer.Graphs.TodoGraph {
+namespace TodoServer.Graphs.TodoGraph
+{
     public class Subscription {
-        public static IObservable<Todo> Todos([FromServices] AppDbContext db, [FromServices] TodoService todoService) {
-            todoService.Init(db);
-            return todoService.AsObservable();
+
+        public static IObservable<IEnumerable<Todo>> Todos([FromServices] IEventService<Todo> eventService) {
+            return eventService.SubscribeList(EventTypes.Read,EventTypes.Create,EventTypes.Update,EventTypes.Delete);
         }
+
+        public static IObservable<IEnumerable<Todo>> GetAll([FromServices] IEventService<Todo> eventService)
+        => eventService.SubscribeAll();
+
+        public static IObservable<Event<EventTypes,Todo>> Events([FromServices] IEventService<Todo> eventService)
+           => eventService.SubscribeEvents();
     }
 }
