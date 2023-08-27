@@ -1,6 +1,6 @@
 ﻿using GraphQL;
 using TodoServer.Models;
-using TodoServer.Services.ChatRoom;
+using TodoServer.Services.Chat;
 
 namespace TodoServer.Graphs.ChatGraph
 {
