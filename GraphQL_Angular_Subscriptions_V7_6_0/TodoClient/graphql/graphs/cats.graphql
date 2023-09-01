@@ -1,0 +1,28 @@
+type Query {
+  cat(id: ID!): Cat
+  cats: [Cat!]!
+}
+
+type Cat {
+  id: Int!
+  name: String!
+  breed: String!
+}
+
+type Mutation {
+  add(name: String!, breed: String!): Cat!
+  remove(id: ID!): Cat
+}
+
+type Subscription {
+  cats: Cat!
+}
+
+
+query GetCats{
+  cats {
+    id
+    name
+    breed
+  }
+}

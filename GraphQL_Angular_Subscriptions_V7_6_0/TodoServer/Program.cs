@@ -15,7 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<AppDbContext>(ServiceLifetime.Scoped, ServiceLifetime.Scoped);
 builder.Services.AddScoped<AppDbContext>();
-builder.Services.AddScoped<CatsData>();
+builder.Services.TryAddSingleton<CatsData>();
 builder.Services.TryAddSingleton<IChatService,ChatService>();
 builder.Services.TryAddSingleton<IEventService<Todo>,EventService<Todo>>();
 
@@ -26,6 +26,7 @@ builder.Services.AddGraphQL(b => b
     .AddSchema<TodoSchema>()  // schema
     .AddSchema<ChatSchema>()  // schema
     .AddScopedSubscriptionExecutionStrategy()
+    .UseApolloTracing()
     .AddAutoClrMappings() //CLR mappings
     .AddSystemTextJson());   // serializer
                              // Add services to the container.

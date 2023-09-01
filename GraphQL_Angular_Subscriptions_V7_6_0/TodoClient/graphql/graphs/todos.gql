@@ -1,0 +1,44 @@
+type Query {
+  lastMessage: Message
+  allMessages(from: String): [Message!]!
+  count: Int!
+}
+
+type Message {
+  id: ID!
+  message: String!
+  from: String!
+  sent: DateTime!
+}
+
+"""
+The `DateTime` scalar type represents a date and time. `DateTime` expects timestamps to be formatted in accordance with the [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) standard.
+"""
+scalar DateTime
+
+type Mutation {
+  addMessage(message: MessageInput!): Message!
+  deleteMessage(id: ID!): Message
+  clearMessages: Int!
+}
+
+input MessageInput {
+  message: String!
+  from: String!
+}
+
+type Subscription {
+  newMessages(from: String): Message!
+  events: Event!
+}
+
+type Event {
+  type: EventType!
+  message: Message
+}
+
+enum EventType {
+  NEW_MESSAGE
+  DELETE_MESSAGE
+  CLEAR_MESSAGES
+}
