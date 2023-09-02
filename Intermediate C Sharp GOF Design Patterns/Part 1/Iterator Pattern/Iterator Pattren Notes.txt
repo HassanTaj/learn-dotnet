@@ -1,0 +1,13 @@
+﻿========================================================================================================
+=										  Iterator Pattern											   =
+========================================================================================================
+
+Gang of For:
+  Provides a way to access the elements of an aggregate object
+  sequentially without exposing its underlying representation.
+
+Simple words: 
+     Its a way to access and interate through collections in the
+	 same way, regardless of type.
+	
+	sometimes collection can also be reffered to a container or an aggreget

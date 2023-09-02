@@ -1,0 +1,30 @@
+﻿========================================================================================================
+=										  Abstract Factory Pattern									   =
+========================================================================================================
+
+Gang of Four: 
+   Providing an interface for creating families of related or dependent 
+   objects without specifying their concrete classes.
+
+    > its like factory method pattern but everything is encapsulated
+	> its a higher level of abstraction using interfaces and abstract classes
+   
+Simple words:
+      You can say its Ultimately a factory for other factories.
+
+> Abstract Factory patterns acts a super-factory which creates other factories. 
+  This pattern is also called as Factory of factories. 
+  In Abstract Factory pattern an interface is responsible for creating a set of related objects,
+  or dependent objects without specifying their concrete classes.
+
+> background
+  Abstract factory pattern in useful when the client needs to create objects which are somehow related.
+  If we need to create the family of related or dependent objects, then we can use Abstract Factory Pattern.
+  This pattern is particularly useful when the client doesn't know exactly what type to create. As an example, 
+  let's say a Showroom exclusively selling cellphones gets a query for the smart phones made by Samsung.
+  
+  Here we don't know the exact type of object to be created (assuming all the information for a phone is wrapped in the form of a concrete object).
+  But we do know that we are looking for smart phones that are manufactured by Samsung. 
+  This information can actually be utilized if our design has Abstract factory implementation.
+  So with this idea of Abstract Factory pattern, we will now try to create a design that will facilitate the creation of related objects.
+  We will go ahead and write a rudimentary application for the scenario we just talked about.

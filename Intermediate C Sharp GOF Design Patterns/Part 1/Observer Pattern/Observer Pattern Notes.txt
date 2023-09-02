@@ -1,0 +1,12 @@
+﻿========================================================================================================
+=										  Observer Pattern											   =
+========================================================================================================
+
+Gang Of Four:
+       Defines a one-to-many dependency between objects so that when 
+	   one object changese state, all its dependents are notified and updated
+	   automatically.
+
+Simple Words: 
+	   Change in one object causes a change or action in another by 
+	   notifying it.

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Read Line</Title>
+      <Author>Lee Haisen</Author>
+      <Description>Snipit to read a string from console</Description>
+      <Shortcut>cr</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>varname</ID>
+         <ToolTip>Type in a variable name</ToolTip>
+        <Default>stringInp</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[string &varname& = Console.ReadLine()]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

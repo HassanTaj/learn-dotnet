@@ -1,0 +1,8 @@
+version: '2.1'
+
+services:
+  iteratorpattern:
+    image: iteratorpattern
+    build:
+      context: .\Iterator Pattern
+      dockerfile: Dockerfile

@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Abstract_Factory.ICreditUnionFactory" Collapsed="true">
+    <Position X="2.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Abstract Factory\ICreditUnionFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Abstract_Factory.Providers.CreditUnionFactoryProvider">
+    <Position X="1.75" Y="4.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Abstract Factory\Providers\CreditUnionFactoryProvider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Abstract_Factory.Concrete_Products.NationalSavingsAccount" BaseTypeListCollapsed="true">
+    <Position X="6.75" Y="4.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Abstract Factory\Concrete_Products\NationalSavingsAccount.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Abstract_Factory.Concrete_Products.NationalLoanAccount" BaseTypeListCollapsed="true">
+    <Position X="6.75" Y="3" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Abstract Factory\Concrete_Products\NationalLoanAccount.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Abstract_Factory.Concrete_Products.CitiSavingsAccount" BaseTypeListCollapsed="true">
+    <Position X="9.75" Y="4.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Abstract Factory\Concrete_Products\CitiSavingsAccount.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Abstract_Factory.Concrete_Products.CitiLoanAccount" BaseTypeListCollapsed="true">
+    <Position X="9.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Abstract Factory\Concrete_Products\CitiLoanAccount.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Abstract_Factory.Concrete_Factories.NationalCreditUnionFactory" Collapsed="true">
+    <Position X="0.5" Y="2.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Abstract Factory\Concrete_Factories\NationalCreditUnionFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Abstract_Factory.Concrete_Factories.CitiCreditUnionFactory" Collapsed="true">
+    <Position X="3.75" Y="2.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Abstract Factory\Concrete_Factories\CitiCreditUnionFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Abstract_Factory.Abstract_Products.ISavingsAccount" Collapsed="true">
+    <Position X="8.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Abstract Factory\Abstract_Products\ISavingsAccount.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Abstract_Factory.Abstract_Products.ILoanAccount" Collapsed="true">
+    <Position X="6.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Abstract Factory\Abstract_Products\ILoanAccount.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

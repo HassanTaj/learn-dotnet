@@ -1,0 +1,16 @@
+﻿========================================================================================================
+=										  Singliton Pattern											   =
+========================================================================================================
+
+Gang of Four: 
+	 Ensure a class has only one instance,
+	 and provides a global point of access to it.
+
+	 also  > 
+	  Singleton defines an instance operation that lets clients
+	  to access its unique instance.
+
+Simple Words:
+       If you want to eliminate the option of instantiating more than one 
+	   of the same object.
+

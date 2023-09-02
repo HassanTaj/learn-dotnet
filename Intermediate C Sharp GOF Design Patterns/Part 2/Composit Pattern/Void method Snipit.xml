@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>General Method</Title>
+      <Author>Lee Haisen</Author>
+      <Description>A general method body snipit</Description>
+      <Shortcut>gm</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>accessor</ID>
+          <ToolTip>Accesor specifier keywrokd to specify method access level</ToolTip>
+          <Default>public</Default>
+        </Literal>
+        <Literal>
+          <ID>returnType</ID>
+          <ToolTip>Return type of the method</ToolTip>
+          <Default>void</Default>
+        </Literal>
+        <Literal>
+          <ID>methodName</ID>
+          <ToolTip>Name of the method</ToolTip>
+          <Default>MethodName</Default>
+        </Literal>
+        <Literal>
+          <ID>parameterType</ID>
+          <ToolTip>Type of parameter</ToolTip>
+          <Default>object</Default>
+        </Literal>
+        <Literal>
+          <ID>parameterIdentifier</ID>
+          <ToolTip>Parameter identifier name</ToolTip>
+          <Default>variableName</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[ $accessor$ $returnType$ $methodName$ ($parameterType$ $parameterIdentifier$) {
+           $selected$ $end$
+        } ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,11 @@
+﻿========================================================================================================
+=										  Command Pattern											   =
+========================================================================================================
+Gang of Four:
+ Encapsulates a request as an object, thereby letting you parameterize 
+ clients with different requests-queue or log requests-and support
+ undoable operations
+
+Simple Words:
+  Command pattern uses an object to store required information to perform an action
+  at any point in time.
