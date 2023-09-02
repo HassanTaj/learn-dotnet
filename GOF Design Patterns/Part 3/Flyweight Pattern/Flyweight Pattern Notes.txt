@@ -1,0 +1,10 @@
+﻿========================================================================================================
+=										  Flyweight Pattern											   =
+========================================================================================================
+
+Gang of four:
+	. Uses sharing to support large numbers of fine-grained objects efficiently.
+
+
+Simple Words:
+	. Eliminates the need of creating new object that already exists by sharing existing one.

@@ -1,0 +1,9 @@
+﻿========================================================================================================
+=										  Proxy Pattern 											   =
+========================================================================================================
+
+Gang of four:
+	. Provides a srrogate or placeholder for another object to control access to it.
+
+Simple Words:
+	. Provides objects that referance objects fro their functionality

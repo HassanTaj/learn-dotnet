@@ -1,0 +1,10 @@
+﻿========================================================================================================
+=										  Facade Pattern											   =
+========================================================================================================
+
+Gang Of Four:
+	. Provides a unified interface to set of interfaces in a subsystem
+	. Defines a higher-level interface that makes the subsystem easier to use.
+
+Simple Words:
+	. Used to hide complexities of the system and provides an interface to the client.
