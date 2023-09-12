@@ -1,1 +1,0 @@
-{"ast":null,"code":"export var version = '3.8.1';","map":{"version":3,"names":["version"],"sources":["D:/Repos/learn-dotnet/GraphQL_Angular_Subscriptions_V7_6_0/TodoClient/node_modules/@apollo/client/version.js"],"sourcesContent":["export var version = '3.8.1';\n"],"mappings":"AAAA,OAAO,IAAIA,OAAO,GAAG,OAAO"},"metadata":{},"sourceType":"module","externalDependencies":[]}

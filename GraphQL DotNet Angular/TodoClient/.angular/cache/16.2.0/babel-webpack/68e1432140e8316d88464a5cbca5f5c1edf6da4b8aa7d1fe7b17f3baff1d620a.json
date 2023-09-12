@@ -1,1 +1,0 @@
-{"ast":null,"code":"export * from './batchLink.js';","map":{"version":3,"names":[],"sources":["D:/Repos/learn-dotnet/GraphQL_Angular_Subscriptions_V7_6_0/TodoClient/node_modules/@apollo/client/link/batch/index.js"],"sourcesContent":["export * from './batchLink.js';\n"],"mappings":"AAAA,cAAc,gBAAgB"},"metadata":{},"sourceType":"module","externalDependencies":[]}
