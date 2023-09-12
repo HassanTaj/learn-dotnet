@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01_TaskPrograming", "01_TaskPrograming\01_TaskPrograming.csproj", "{EF137ABD-F678-4D26-9DE5-889C48CCEF41}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02 Data Sharing and Synchronization", "02 Data Sharing and Synchronization\02 Data Sharing and Synchronization.csproj", "{8BCEC0C5-B610-45B4-ABC8-D06568F07093}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03 Concurrent Collections", "03 Concurrent Collections\03 Concurrent Collections.csproj", "{79DEC3AF-DD30-4718-9B85-53851AD94A8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04 Task Coordination", "04 Task Coordination\04 Task Coordination.csproj", "{C0977FBB-B077-4499-930A-25B6D511241B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05 Parallel Loops", "05 Parallel Loops\05 Parallel Loops.csproj", "{E6125101-2884-4C1E-859B-3B2E22F22E80}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06 Parallel LINQ", "06 Parallel LINQ\06 Parallel LINQ.csproj", "{C5D04B59-9DA0-4105-90F7-4FAD53A80BBB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EF137ABD-F678-4D26-9DE5-889C48CCEF41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF137ABD-F678-4D26-9DE5-889C48CCEF41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF137ABD-F678-4D26-9DE5-889C48CCEF41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF137ABD-F678-4D26-9DE5-889C48CCEF41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BCEC0C5-B610-45B4-ABC8-D06568F07093}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BCEC0C5-B610-45B4-ABC8-D06568F07093}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BCEC0C5-B610-45B4-ABC8-D06568F07093}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BCEC0C5-B610-45B4-ABC8-D06568F07093}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79DEC3AF-DD30-4718-9B85-53851AD94A8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79DEC3AF-DD30-4718-9B85-53851AD94A8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79DEC3AF-DD30-4718-9B85-53851AD94A8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79DEC3AF-DD30-4718-9B85-53851AD94A8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0977FBB-B077-4499-930A-25B6D511241B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0977FBB-B077-4499-930A-25B6D511241B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0977FBB-B077-4499-930A-25B6D511241B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0977FBB-B077-4499-930A-25B6D511241B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6125101-2884-4C1E-859B-3B2E22F22E80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6125101-2884-4C1E-859B-3B2E22F22E80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6125101-2884-4C1E-859B-3B2E22F22E80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6125101-2884-4C1E-859B-3B2E22F22E80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5D04B59-9DA0-4105-90F7-4FAD53A80BBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5D04B59-9DA0-4105-90F7-4FAD53A80BBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5D04B59-9DA0-4105-90F7-4FAD53A80BBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5D04B59-9DA0-4105-90F7-4FAD53A80BBB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1F636BFF-A0E2-47ED-BC89-6984537BCC82}
+	EndGlobalSection
+EndGlobal

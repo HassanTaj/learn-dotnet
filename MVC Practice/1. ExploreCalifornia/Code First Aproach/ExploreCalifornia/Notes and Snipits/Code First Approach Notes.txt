@@ -1,0 +1,71 @@
+﻿
+//////////////////////////////////////////////////////////////////////////////////////
+		 Chapter 2 Structuring Application
+//////////////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////
+		 Creating Controlers and Views
+////////////////////////////////////////////////////////////
+
+1. Using auto generated project and added some scfolding to it.
+2. Adding a Tour Model 
+3. Adding a Tour Controler
+4. Adding a Tour view create(auto generate the whole thing)
+
+
+////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////
+		 Working with Modles and Forms
+////////////////////////////////////////////////////////////
+
+1. Well add data Annotations to our Tour model use data Annotations [thigs written in this on top of a field]
+ . well use these anotations to change the behaviour of the model and also change the datat thats displayed using[Display]
+
+
+//////////////////////////////////////////////////////////// 
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////////////
+		 Chapter 3 Working With Data Bases
+//////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////
+		 Choosing Tools for managing data
+////////////////////////////////////////////////////////////
+ . bla bla bla
+ use Sql Server or LocalDB
+ ADO.net (Active Data Object)
+ uses ORM. Object Relational Modle
+////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////
+		Code First Developement with Entity Framework or Code First Migrations
+////////////////////////////////////////////////////////////
+.Cause we already have the code so we can do Code first approach to generate DB for exsisting class
+ to do that 
+
+ 1. We Need a Class that inherits From DbContext
+	. This will expose the Entities in The Database using a public Properties of a Type Called DbSet
+	. Go to Models add a class Called MyDbContext :DbContext , add constructor that calls base class constructor
+	. Base Class Constructor takes a Connection String or name of a DataBase. since we don't have any of those
+	. we'll just pass the name of the db and it will create it and Vs will configure the con String dynamicly for us and Create a DB
+
+2. We'll add a public property a Generic DbSet that holds the tours we'll call it Tours
+   > when we run the application again and create a new tour it will be added to the 
+     tours dbset which will have the effect of creating a new database which contains a tours table 
+	 that is based on our tour class and it'll do that using sqlServerExpress localdb
+
+3. Go to Tour controler and add a private instane of dbcontext and add code to Create Action with PostAttribute
+    db.torus.add(tourentity); 
+	db.savechanges();
+
+4. open create page in browser
+5. db is created
+6. Click on tours and Add controler with views using entity framework
+   cose model class , chose db context press ok
+
+////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////////////////

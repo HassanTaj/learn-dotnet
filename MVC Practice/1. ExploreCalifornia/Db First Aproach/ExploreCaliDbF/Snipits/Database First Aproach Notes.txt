@@ -1,0 +1,77 @@
+﻿/////////////////////////////////////////////////
+              Database First developement
+/////////////////////////////////////////////////
+
+1 create a localDB if you don't have one 
+2.  local db from server add db and then in server name write "(localdb)\MSSQLLocalDB" for VS 2015 
+	for older version write "(localdb)\v11.0"
+3. if you already have a db just add its connection 
+
+4. Now we'll add an Entity Data Model
+   right click on Modles, and add Ado.net Entity DataModle 
+   a. give it a name.
+   b. generate from db
+     // basicly what we do here is that we request to generate an ORM(Object relational Modle) be created for us 
+   c. change connections setting name to MyDbContext // just to be consistant with first tutorial
+      // this name will be used  for the DB context class  that'll be generated and also as a connection string in web.config file
+  d. if you're asked to add data file to the project just say ok cause its fine
+  e. you'll be ased for db objects just chose tables n go ahead finish this shit 
+
+
+5. Rebuild after adding this thing cause we didn't created the modles etc our selves so yea thats what you get for slackin off
+
+6. add a MVC5 controler with views using entity framework
+  a. name it Tour conroler 
+  b. chose db context generated  from db
+  c. modle class generated from db
+
+7. view it in browser if you wish 
+8. use Sys.compomodle.dataanotation to make it look lill meaning full  n we're all done
+
+tables used in this example are
+--------------------------------------------------------------
+CREATE TABLE [dbo].[Tour](
+    [Id]            INT  IDENTITY PRIMARY KEY NOT NULL,
+    [Name]          NVARCHAR (MAX)  NOT NULL,
+    [Discription]   NVARCHAR (MAX)  NULL,
+    [Length]        INT             NOT NULL,
+    [Price]         DECIMAL (18, 2) NOT NULL,
+    [RatingId]        INT FOREIGN KEY REFERENCES Rating(Id),
+    [IncludesMeals] BIT             NOT NULL,
+);
+
+INSERT INTO Tour(Name,Discription,[Length],Price,RatingId,IncludesMeals) 
+          Values ('West Coast','one shot',1,900.00,1,0);
+INSERT INTO Tour(Name,Discription,[Length],Price,RatingId,IncludesMeals) 
+          Values ('Excursion Island','A family Trip',6,9000.00,4,1);
+
+
+drop table Rating;
+
+CREATE TABLE [dbo].[Rating]
+(
+	[Id] INT NOT NULL identity Primary key, 
+    [Name] NVARCHAR (MAX)  NULL, 
+    [Discription] NVARCHAR (MAX)  NULL 
+);
+
+Insert INTO Rating(Name,Discription) values ('Easy','Appropreate for all');
+Insert INTO Rating(Name,Discription) values ('Medium','May be some difficult or tirring activities');
+Insert INTO Rating(Name,Discription) values ('Hard','For experienced partitioners only');
+Insert INTO Rating(Name,Discription) values ('Hard AF','For People who believein "Go Hard Nigga Or Go Home Nigga" ');
+
+------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------
+/////////////////////////////////////////////////
+               Linq to entities
+/////////////////////////////////////////////////
+
+ we'll use the same soltion to make more customized shit out of it .
+
+1. Add a new Action method in Tour Controler
+   it will give us all the tours of highest difficulty rating
+2. After adding method and functionality right click its name and Add view
+3. we'll use the list tempelate, dbcontext. and tour class done
+4. Ctrl + shitf + W
+/////////////////////////////////////////////////

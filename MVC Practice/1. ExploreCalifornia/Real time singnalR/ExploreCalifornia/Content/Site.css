@@ -1,0 +1,77 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    font-family: Georgia,"Times New Roman",Times,serif;
+}
+
+h1 {
+    font-family: Georgia,"Times New Roman",Times,serif;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color:#ffffff;
+}
+
+p {
+    line-height: 1.8;
+}
+
+.sidebar {
+    padding-top: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+.msgSent{
+    color:#808080; 
+    text-align:right;
+     margin-right:7px;
+}
+.msgRecieved{
+    color:#808080; 
+    text-align:left;
+     margin-left:15px;
+}
+.messageText{
+
+margin: 8px 10px 5px 10px;
+box-shadow: 1px 1px 6px #808080;
+border-radius: 5px;
+padding: 5px 10px 5px 10px;
+font-size: 16px;
+background-color: #428bca;
+color: #fff;
+}

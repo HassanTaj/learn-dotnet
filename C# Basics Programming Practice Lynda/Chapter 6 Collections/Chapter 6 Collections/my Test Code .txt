@@ -1,0 +1,98 @@
+﻿			///  Collections in C#
+            /// arrays
+            /// arraylist
+            /// list
+            /// stacks
+            /// queue
+            /// dictionaries
+            /// 
+            
+            //string[] stringSimpleArray = {"simple array element 1","simple array element 2", "simple array element 3"};
+            //Console.WriteLine(" ---------using simple arry \n");
+            //foreach (string val in stringSimpleArray)
+            //{
+            //    Console.WriteLine(val);
+            //}
+
+            //    List<string> myList = new List<string>();
+            //    myList.Add("list item 1");
+            //    myList.Add("list item 2");
+            //    myList.Add("list item 3");
+
+            //    //myList.Insert(1, "object name or shit");
+            //    //myList.Remove("objet name");
+            //    //myList.RemoveAt(3); // int index
+            //    //myList.Count 
+            //    Console.WriteLine("\n----------- using List \n");
+            //    foreach (string listVal in myList)
+            //    {
+            //        Console.WriteLine("list item > " + listVal);
+            //    }
+
+            //Console.WriteLine("\n----------- using Array List \n");
+            //ArrayList arryList = new ArrayList();
+            //arryList.Add("array list item 1");
+            //arryList.Add("array list item 2");
+            //arryList.Add("array list item 3");
+
+            ////arryList.Count();
+            
+            //foreach (string arrlst in arryList)
+            //{
+            //    Console.WriteLine(arrlst);
+            //}
+
+            //Console.WriteLine("\n----------- using Stacks \n");
+            //Stack<Object> myStack = new Stack<Object>();
+
+            //myStack.Push("pushed element 1");
+            //myStack.Push("pushed element 2");
+            //myStack.Push("pushed element 3");
+            ////myStack.Peek();
+            ////myStack.Pop();
+            ////myStack.Count();
+
+            //foreach (object o in myStack)
+            //{
+            //    Console.WriteLine("Stack elements > " + o);
+            //}
+
+            //Queue<String> myQueu = new Queue<string>();
+            //myQueu.Enqueue("queued element 1");
+            //myQueu.Enqueue("queued element 2");
+            //myQueu.Enqueue("queued element 3");
+            ////myQueu.Dequeue();
+            ////myQueu.Count();
+            ////myQueu.Peek();
+            //Console.WriteLine("\n----------- using Queus \n");
+            //foreach (string queuVal in myQueu)
+            //{
+            //    Console.WriteLine("dequeing element > "+queuVal);
+            //}
+            
+            //Hashtable myHT = new Hashtable();
+            //myHT.Add("SEA", "Under the seee, under the seee fuck and shit under theeee seaaaa..");
+            //myHT.Add("USA","United states of America");
+            //myHT["FUCK"] = "fuck this shit i'm out";
+
+            ////myHT.Remove("SEA");
+            ////int a = myHT.Count;
+
+            //Console.WriteLine("\n----------- using hashTable\n ");
+            //Console.WriteLine("Value for key < {0} >  is < {1} > ", "SEA", myHT["SEA"]);
+
+
+            //Console.WriteLine("\n----------- using Dictionary \n ");
+
+            //Dictionary<int, string> dictionary = new Dictionary<int, string>();
+
+            //dictionary.Add(1, "fuck");
+
+            //dictionary.Add(2, "fuck2");
+            //dictionary.Add(3, "fuck3");
+            //dictionary.Add(4, "fuck4");
+
+            //Console.WriteLine("value in dictionary key {0} has value < {1} >",1,dictionary[1]);
+            //Console.WriteLine("value in dictionary key {0} has value < {1} >", 2, dictionary[2]);
+            //Console.WriteLine("value in dictionary key {0} has value < {1} >", 3, dictionary[3]);
+            //Console.WriteLine("value in dictionary key {0} has value < {1} >", 4, dictionary[4]);

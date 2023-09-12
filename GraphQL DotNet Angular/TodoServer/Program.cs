@@ -1,6 +1,8 @@
 
 
 using GraphQL;
+using GraphQL.Instrumentation;
+using GraphQL.SystemTextJson;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using TodoServer.Data;
 using TodoServer.Graphs.CatsGraph;
@@ -19,6 +21,12 @@ builder.Services.TryAddSingleton<CatsData>();
 builder.Services.TryAddSingleton<IChatService,ChatService>();
 builder.Services.TryAddSingleton<IEventService<Todo>,EventService<Todo>>();
 
+builder.Services.AddSingleton<IGraphQLSerializer, GraphQLSerializer>();
+builder.Services.AddSingleton<IDocumentExecuter, DocumentExecuter>();
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+builder.Services.AddSingleton<IFieldMiddleware,InstrumentFieldsMiddleware>();
+
 builder.Services.AddCors();
 
 builder.Services.AddGraphQL(b => b
@@ -26,7 +34,7 @@ builder.Services.AddGraphQL(b => b
     .AddSchema<TodoSchema>()  // schema
     .AddSchema<ChatSchema>()  // schema
     .AddScopedSubscriptionExecutionStrategy()
-    .UseApolloTracing()
+    .UseApolloTracing(true)
     .AddAutoClrMappings() //CLR mappings
     .AddSystemTextJson());   // serializer
                              // Add services to the container.

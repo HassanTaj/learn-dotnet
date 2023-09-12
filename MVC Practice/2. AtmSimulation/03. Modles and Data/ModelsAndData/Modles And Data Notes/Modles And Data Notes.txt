@@ -1,0 +1,237 @@
+﻿////////////////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////
+//			 Uisng Models in Views and Actions
+//////////////////////////////////////////////////////////////
+
+> simple tutorial for making a model.cs class and then auto generating a controller
+  with read/write actions
+
+      
+			// returns HTML containing the Name of the Property
+            @Html.DisplayNameFor(model => model.AccountNumber)
+     
+
+			// returns HTML containing the Value of the Property
+            @Html.DisplayFor(model => model.AccountNumber)
+
+			// returns a link text
+		    @Url.Action("action","controler");
+
+//////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////
+//       Displaying and Validating Model Properties
+//////////////////////////////////////////////////////////////
+
+> Use data annotations in the modle to decorate it  to make text look different in views
+	e.g.
+
+        [Required]
+        //[StringLength(10,MinimumLength =6)]
+        [RegularExpression(@"\d{6,10}",ErrorMessage ="Account # must be between 6 and 10")]
+        [Display(Name ="Account Number # ")]
+        public string AccountNumber { get; set; }
+
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+ 
+        [Display(Name = "Balance  ")]
+        [DataType(DataType.Currency)]
+        public decimal Balance { get; set; }
+
+///////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////
+//       Using View Models
+//////////////////////////////////////////////////////////////
+
+> A view model is different than a tipical model
+
+ we've made a model already  so if you look at the CheckingAccount.cs Model
+ and we can use this modle across multiple pages to display property values of an instance of the model 
+ or to build a form with fields that corospond to each property very soon we'll be presisting instances of this class
+ in a table in a database  properties of each object instance will corrospond to columns in that table
+
+> if you've noticed we got the register and login links in out nav bar 
+
+the regester page shows us a form with eamil, pass and cnfPass.
+lets take a look at regersterviewmodel
+in Views/Account/RegisterViewModel.cshtml
+
+if you look at the topon the model decleration you'll find there is no account model or register model 
+but there is a Reigister view model 
+
+the RegesterViewModel is a model that we use exclusively to deal with the registeration form
+and not a one that will be presisted to database 
+> right click the RegisterViewModel and to defenition
+  we see that this is definedin side the  AccountViewModesl file
+  this file contains several vew models that arerelated to  user account Functions.
+  The RegisterViewModel contains
+  email,pass,confpass properties
+
+  confpass is an example of a property that would be never saved in the database
+  making it more appropreate for a view model instead of a basic model
+
+  The LoginViewModel is made of 
+  Email,pass,remember me (to enable cookie based login)
+
+  now go to the Account Controller inside the RegisterMethod
+  the one that processes the form 
+
+ > you can see that user record that would be created 
+   is not based on the RegisterViewModel but instead another Class 
+   called AplicationUser which has the email from the View Model 
+   assigned to its username Property then that along with the password from the viewModel
+   would have to be hashed before sotred in database
+
+   the only parameter to this method is an instance of 
+   RefisterViewModel 
+
+//////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////
+//       Generating Database Objects with EntityFramework
+//////////////////////////////////////////////////////////////
+
+> take a look at ORM(Object Relational maping)
+> Go to AccountController there is an ApplicationUser
+> Go to ApplicationUser class in IdentityModels.cs
+
+    Application user inherits from IdentityUser, IdentityUser is the model that is going to be stroed inthe database
+	it contains properties like userName,passhash,and we can add additional that we wanna stroe in this inheriting class 
+	in this file we also have a class ApplicationDbContext which inherits from IdentityDbContext which internally inherits from DbContext
+	the dbContext will serve as the object layer we'll use to compunicate with the database
+	by inheriting from identityDbContex this will already give us properties like this.users,this.roles
+	and we can use them directly with the user data  in our database
+
+	the string "DefailtConnectio" that's passed to its constructor reffers to a connection string in web.config
+	that will be used to connect to a database or to create a database if it doesn't already exist
+	
+	in web.config file under connection strings
+	the DataDirectory Token refferst ot app_data folder of our project
+
+	in IdentityModels
+	   we add a 
+	   DbSet<CheckingAccount> // this will allow us to work directly with the checking account table
+    in CheckingAccount 
+	   we add an other Property that will be a refferance to the user that holds this Account 
+	   this will be automaticly implemented  with a foregin key that refferances the user table when 
+	   our database is generated
+
+	   making it a virtual property allows it to be overriden by the framework with a mechanism 
+	   that supports lazy loading of this related object
+	   so we can assign a user object to this property and have that be updated in the database
+
+	   but it might be a lot more convineant in some scenerios to just assign a user id
+	   so we'll also add following
+	   pub str appuserid{get;set;}
+	   
+> back in account conroller 
+ if the creation of user succedes we can set the user user up with a new checking account 
+ we'll create a new instance of applicationdbcontext  and a checkingaccount
+  copy the frist name and last name from the register view model and account number
+  we'll hardcode fro now balance sould be 0 for new accounts
+  and we'll asign user.id for new user id to application user id 
+  the we just need to add the checking account 
+  db.add();
+  db.savechanges();
+
+//////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////
+//       Entity Framework Code First Migrations
+//////////////////////////////////////////////////////////////
+
+> How to update the Database Scheema so it can stay in sync with our modle classes
+  using Entityframework Code First Migrations
+
+  so in order to change datbase scheema we have two ways either 
+  > change the schema in the SSMS
+  > or go back to the model and use dataAnnotations for the reason
+	i'll do it in the checkingAccount Model.
+	namespace
+	using System.ComponentModel.DataAnnotations.Schema;
+	[column(TypeName="varchar")]
+
+	try to run it now f5 or Ctrl+F5
+	Tadaaaa it won't run 
+	cuase well EntityFramework can create DB but won't update the shceema 
+	but it does suggest ef migrations how will we do that ?
+
+	open Nuget Manager Console
+	type 
+	Enalble-Migrations -ContextType ApplicationDbContext
+	enable-migrations -contexttype ApplicationDbContext
+	either work
+
+	a folder called Migrations will be generated
+	and also a row will be added to the migration history table in our database
+
+	we can use automatic migrations or manual migrations 
+	main purpose is to push the changes to the db 
+	but automatic migrations are alot more convineant during developement stages
+	when our models are frequently changing
+
+> do Migrations Manually
+
+ 	Enable-Migrations
+ 
+ we need to push the changes to our database
+ first Add a migration 
+
+	Add-Migration WhatEverTheFUCKMigrations
+
+	 in the migration file 
+	 the public Override void Up(){...}// method is used to apply the changes
+		  and 
+	 the public Override void Down(){...}// method is used to Rollback the changes
+
+> we can also create a SQL Script if necessary
+	for example if we need to manually apply these changes on a different server
+	to do that we wil use  the 
+
+	'Update-Database -Script'  command with script flag
+	and you'll see something like 
+	// some sql script
+
+	ALTER TABLE [dbo].[CheckingAccounts] ALTER COLUMN [AccountNumber] [varchar](10) NOT NULL
+	INSERT [dbo].[__MigrationHistory]([MigrationId], [ContextKey], [Model], [ProductVersion])
+	VALUES (N'201612251101410_AccountNumberChanges', N'ATMEntryPoint.Models.ApplicationDbContext',  0x1F8B0800000000000400DD5D5B6FE336167E5FA0FF41D0D37691DAB9EC0C6603BB45C649BAC1E68671A6D8B780966847188972252A4DB0D85FB60FFD49FD0B7B2851B2C48BEEB6E5A22FB1487E873CFC7878489E33FDE37FBF4F7E7AF35CE31507A1E393A979323A360D4C2CDF76C86A6A4674F9C327F3A71FBFFBCBE4CAF6DE8C5FD27A67AC1EB424E1D47CA1747D3E1E87D60BF65038F21C2BF0437F494796EF8D91ED8F4F8F8FFF313E391963803001CB30265F22421D0FC73FE0E7CC27165ED308B977BE8DDD907F8792798C6ADC230F876B64E1A979F174774568F0FEE83B848E92FAA671E13A08FA32C7EED23410213E45147A7AFE35C4731AF864355FC307E43EBDAF31D45B2237C47C04E79BEA7507737CCA0633DE344CA1AC28A4BED710F0E48C6B672C366FA56333D31EE80F54E5D07736EA58875373F682AD6F30B91796E5C324988628F37CE606ACFED404DDBAE105B12F11455CD123A1F991917CE7B58E32860091D87F47C62C726914E029C1110D907B643C460BD7B1FE85DF9FFC6F984C49E4BAF91E439FA1ACF0013E3D06FE1A07F4FD0B5EF271DCD8A6312EB61B8B0DB366B936C9D06E083D3B358D7B108E162ECE089153C39CFA01FE19131C208AED4744290E08C3C0B14A25E9822CAEA0FBC85BE020150B5404DD99C61D7ABBC564455F60C5C142BA76DEB09D7EE03DF94A1C5885D086061156F4B45CFAB5138494FD592219FEAC25BA5CD22DDA91A0CFC8456025523997D8723CE49AC663007F71EBF5C934E616625A524D6EC584ADD7C0CB78EEC168041BAEA826EDF4539B11DDA35767154B10643381A6F105BB7161F8E2AC1353262EB7E7A4E275E07B5F7C575ECD71F9F3DC8F8258517E49A52714AC302D767132DE988B522322E8AACC88A8CCF548687FA856A403331A92F3CA438E5B22F6F4C3C71E96582C05F6E2A51378381BE5671F588448E33E3FA230FCCD0FEC7FA2F065EBD6618EAD280092CE29F2D65B97F6F8E2135C69DA7B97D5DBD43CFDE65F230B36B82BC25A75C6BBF5AD6F7E44AFE2F58BBF522BB3D2F0F3C9F1EA03F4D21D3074380CAF81CCD89E255E4EF9B65F0EC74C54C5165777FD5549D6EE103317395EA8DC230463FA9C56DDEC12EA1AD23EA1A9A6DA29CABA7AEBAF1C52AFAB69557D57931A955DE5D59A769581D5EB29AFA9EF685CA1B29F49AD4E7B6FEA8032BC78864A5DF8ECA07011AEEF311DA5AD4709EE75009860A4BF8D2458D894EB36DE6CD8A77537ECB393C5F2ECD3878FC83EFBF8777CF6E1CF7804E8CD8D6C68AFE2E96342B7BE37C5927E416ED4B7A856AB213602FDAF861876F8AB21EE267C7E756CE6958CAB5BA49501BE56FD94CF4DD79CD0B35D2F87C230772D7C3736A0D572617B51FFAB85A10E7FB1A8A9ACACCA06D486F5FBB2FE697F07C6B8FED976184C3B941B867D1F70D87251BBE2F9F97EE6D5367EB85C2A39E18A2A4D3CF08B30F42D27EE95FAFA2B3D7115470A8761A3DEF12BD1B9E2D40133000C75D837E8174CBD29F2ED815C6217536C5C58C973C30C8516B265BDC3D8EC86FD4B7594EB9FE2EC51ECE1DF24C1B01270C05A2176B314C23A730895978D432C678DDC5A1A135AD75C764C09991CB1E412AF316183ABA5923A1DD0EE30E34C963043559A9A8C734C6C46507ECEAE4B00F1D03D34820AA77D0D41F9716027042D6A6C0F042DAAE4E0089A5CAFD49D7FE1AE6568F42C5EF268D899F8433B2167415D7BE066411F83A7A6F2C94D37F5E5EF6F9B99975EDDAB26BE4284825C15DC3F1E8D4EFAA157598776C0AE3295D711AF78E7DD0BCF146EAD8E02653EAE6C5D5496654B96AFC4B3DEBDD9D36B6907ACD46BA28E70F51DC35688989C71A00D8516389017C5E58215E2375568100C8C1FD8437EE01399C1C0E798AA6D291CDC36472C9D65940C6111921F00251CC9FC55E048471915A8E2BCD300367DDD2A85E55E6A0358FE14558A9A2CB30AD02A2025488E561B24DD1364AE72F963A5C8FBDA87E76C4C1933A43554FBA09BC352B143B48B454DB4D052CA8F6A2DA9CE6F4D4E709DB4249CB6345A4A07D3BB96384BAB95A43843343845745251D1E3D768880FA4B382D43161B27EAA1DD9FAAE6C6E48B24D2F5154A9F35AA5F216BA51DD15CA9AA972BDEA3A5FB9012827B7AEAFD41361D20BCC6C73CFCA26E3248E9A7F988C3501D7933BB45EC374E502B0F917639E445FCF7E98370F4AF6128CB1152A6293B3DE6692A81FA015164A4134F4348E6B6531820BC42E9767B6275553BA329A8D3015A9F156E4C94C77CAB421FB9B9B2D559CA3E8DCC8BE2007BA86117BCC9B8C430EF4AB4D4630588C3C7251A0784398F96EE411BD7FAB6F2D442FE78184A2FA98B998E43C5EEE737DAC4DD4711E6AF3B53E5216569C07CA3E36D0987CAC2C68ADFAD4C9D6A54007E9382031503AAB15995D8BF73A0BD890ECA207DE9CEC9508DB213B0FAECD03F04F0D3172F1991258AEAC3E6A3184368F592CA98F28C4C9E62185A206BDCC47C3163A992F6885A7D1A8BA467D0972FC6B1E5D2E6D6098E448D88285928B5B602BFA2C963532F562B0AC60EEC5E2FAD89BC8D93CE4E6EB604CA0E2BCD7D91ECA9707CD2D620D8CEDD844D51EA6DFB87428B948C43C50EE73432C1E6B2881F1EF83E493F6F0DE814FC9AD51373E6930F4D6A710C557343EA5A1877ACC42685EC1C0978526EAF19AB17600DCD0DD5974A0467C6BD78D196A88ED9A8AF40A3C8FA2BB16DFDBD4F53C5D1DA7AAD93475DB0FE45D7C2F3BB874C52156C9A467571DC295C6845F2F54279A4BF70D491596719A18277099DF438ABD519C203DFFD59DB90E660E525AE10E116789439A44139AA7C727A742A6FA70B2C6C76168BB8AEB9992D4F1E2B4ED201AD261CAAD4CCA689E2C26276ABFA2C07A418194A9DD350D9B70E0BF7AE8EDFB3C5C9B54EB4E60423AB5BDB3746A92E9567A5EBC21367E9B9AFF8921CE8D9B7F3F4B2847C643002BEBDC3836FE2B87C596A9A07572F3CE694E94EC2B8EAF79D6B012350EEB6D461C7592F0C2A1BD240877E2B43209B813A222D1B72FBC5E54A84BE46D83A54DE2B5E1278D93781BDA2B65526F9BAE69137AE31DA1633A6F7D8394B68C3F1F1937E157E2FC1A41C1136843B047C2CAEA2B6947710970B03B6F877DA1D966D02E6BB2D3429733231BC075C87E6CC18C034B1CEC6D7754E405F686BD4F6AB74F066C419E9D27D2EDDB4C14D3EB1AF52669BACB996D3BAB03F15FDBEDD26CD0DBDFA5FBCE0A1B401E8322DA71FFB95FBB0CDE2D7BA919589642B70CAF81918DC7C0EE3F8F6BD764D33DE30C9C6C8DB2B506C6B524A879EF4959BB669AE6A96160446B947BD58167CA64286DD46AB74CAE43614B75ACE29F2E976A28E953FBB44B156F91C3304A7BCF8F92638FC5392D4D7CAA93F794BC2E4E4D7BE1030F92F34855ACBD2457B27B925CA9864A6EF24FA9A883F245918A7381245451A75CAC26E7A64C3677134B65F33AE5B235992C65B293F5592A3AA9522E591DF0AF135C21B44AA05AD89ED3BB0AB91015297D5567D7D230BA43CAE6EA452985E5A189053B9CE4AD5E54925F40EA18A8C1266BF5A50ECD3EA54C3D197C7696722E55F3B8134634C8C6924392C081C9FD1F32C0890A9DD50682FDFF3208B60AAE4B56E7862CFDD483127A945611AE59EF304536F83517017596C8A250CC9E5BE37F022C7EC2628FFE0B6CDF908788AE230A43C6DEC22DBCFD304FAC4C7E9C7256ECF3E461CD7E857D0C01BAE9B067EA07F239725C3BEBF7B5E2425703C15C3CFEB8C9E692B247CED57B8674EF939A405C7D9967FA84BDB50B60E10399A357DCA66F40BF5BBC42D6FBE6314C07523D1145B54F2E1DB40A9017728C4D7BF8091CB6BDB71FFF0F6D9B20D528660000 , N'6.1.3-40302')
+
+	but if you don't want to do that we can use 
+
+	'Update-Database -Verbose'  command with verbose flag
+	so we can see actually what its doing
+
+		> Its also Possible to roll back to a previous state using the Target migration switch
+		 with the name of a specific migration
+
+		  eg
+			 Update-Database -TargetMigration InitialCreate
+
+		> now lets change the account number 
+
+
+> For Enabling Automatic Migrations
+  open Configuration.cs file
+  and set AutomaticMigrationsEnabled to true
+
+  now lets make a change to checking account again 
+  the applicationuserid property was made as a nullable column
+   if we don't wanna allow nulls there
+   we'll add a required attribute
+
+   and with automatic migrations enabled 
+    we'll only have to give one command
+
+	update-database or update-database -verbose if you wanna see whats going on
+
+	but the enetity framework will be worried about data loss with automatic migrations
+	so we give it force flag 
+
+	then use update-database -force
+//////////////////////////////////////////////////////////////////////////////

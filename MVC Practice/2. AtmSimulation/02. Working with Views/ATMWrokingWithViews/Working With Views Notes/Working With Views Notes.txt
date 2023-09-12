@@ -1,0 +1,146 @@
+﻿////////////////////////////////////////////////////////////////////////////////////
+
+
+
+///////////////////////////////////////////////////////////////////
+						Using Razor Syntax
+//////////////////////////////////////////////////////////////////
+
+ > A quick over view of Razor Syntax
+   eg.
+     Home/Index
+	  @{
+		// you can enter any C# code here normally and it will execute just like if it was written in a 
+		// cs file
+		ViewBag.Title ="Home page";
+	  }
+
+> we Don't want to have too much logic in our views becuase
+   Guiding Principles of MVC is Seperation of Concerns.
+   But sometimes the easiest way to display something is using some embedded C# code
+   to dynamicly display things
+  
+ >   example 2
+    if we have a C# code right after the @ sign it will evaluate it and render it as a string
+      You are using @Request.Browser.Browser, browsers nigga please change to Firefox
+
+> we can also create inline helper methods  where we do by using 
+   @helper keyword that allows our expression to be called from other Code blocks or another Razor Expression
+    
+	exmaple :
+
+   @{  var amounts = new List<Decimal> { 100, 25.50m, -40, 27 };
+}
+
+<ul>
+    @foreach (var amount in amounts) {
+        <li>@formateAcount(amount)</li>
+    }
+</ul>
+
+
+@helper formateAcount(decimal amount) {
+
+    var color = "green";
+    if (amount < 0) {
+
+        color = "red";
+    }
+    <span style="color:@color">@String.Format("{0:c}",amount)</span>
+}
+
+////////////////////////////////////////////////////////////////////////////
+
+
+///////////////////////////////////////////////////////////////////
+						Working with Layouts
+//////////////////////////////////////////////////////////////////
+
+>  when a controller's  Index action is called/invoked it returns a view who's name matches
+the name of the action and its contant can be found in Views/ControllerName/Index.cshtml
+> the main structure onthe layout is defined in _Layout file Views/shared/_layout
+
+> we can tell a page what layout file we want to use and we can define it as a property in the .chtml file
+ like 
+ @{
+  Layout = "~/Views/Controller/layoutFile.cshtml";
+ } 
+  in the layout file 
+
+> we can also do it in a better way
+  by defining a layoutfile for all the views in the _ViewStart.cshtml file
+  which is located in Views/ViewStart.cshtml
+   > yes this file can be coppied and used with different controller in different way
+
+> @RenderBody() 
+is the place where all the content of the views will be injected in the main layout file
+    however not everything in the view file has to be inserted there.
+>@RenderSection("scripts",required:false)
+  is the place where the section of the view file named scripts should be renderd on this point if it exists.
+  > in any file you can define the script section with following syntax
+  @section script {
+  <script> 
+  // your java script or jquery here
+  </script>
+  }
+
+////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////
+				       Employing HTML Helpers
+//////////////////////////////////////////////////////////////////
+
+some of the HTML helpers are 
+
+> @Html.ActionLinkk("link text","Action name","Controller name", new {area ="" <any additional values fo the route}), new{@class="navbar-brand" < an Anonymous object containing HTML attributes}
+
+an overload
+> @Html.ActionLinkk("link text","Action name","Controller name")
+
+well if this seems difficult then learn it cause it helps us alot becuase if some retarded lill fuck ass SEO
+tells you someday that you need to completely reformat your links
+you can simply do that in routconfig class and the action linkes will automaticly generate the shit
+
+for this example we'll replace some <a> tags with some action links
+
+@Html.Partial("_LoginPartial") we use this method to render a givin partial view at this position in document
+ there are several overloads that allow us to pass data into this view
+
+
+ @using Microsoft.AspNet.Identity
+@* this if statement will cause different elements to be rendered
+    dependin on weather or not user is authenticated *@
+@if (Request.IsAuthenticated) {
+       /// this HTML.BeginForm will render a formStart tag using a specified action, controller httpMethod and adittional html attributes
+       /// the using keyword is normally for desposing of objects in memory at the end of the using block here it will also emitthe Form end tag where ever we put
+       /// its curly brace
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" })) {
+        /// antiforgertoken method will generate a hidden input containing a tokken that will be validate by the action
+        /// method that handles this form submission along witha matching a cookie to ensure that any request for this action
+        /// actually is generated from one of our forms and not from a malicious source in order for it to be validated
+        /// we'll need a filter to do that in our log off method in the AccountController
+         @Html.AntiForgeryToken()
+
+
+
+         //
+        // POST: /Account/LogOff
+        [HttpPost]
+        [ValidateAntiForgeryToken] // this  is the AntiForgeryToken i was talkin bout
+        public ActionResult LogOff()
+        {
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            return RedirectToAction("Index", "Home");
+        }
+
+>@Html.Action();
+  its also used to render a partial view but we need to do so by requesting a controller action 
+  and not just rendering the contents of some view 
+
+
+
+
+////////////////////////////////////////////////////////////////////////////
+
+
+///////////////////////////////////////////////////////////////////////////////////

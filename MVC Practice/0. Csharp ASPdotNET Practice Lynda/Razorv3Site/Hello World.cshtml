@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>Razor V3 Web Page</title>
+        <link href="~/StyleSheet.css" type="text/css" rel="stylesheet" />
+    </head>
+    <body>
+
+        <div id="wrapper">
+
+            <div id="sectionLeft">
+                <h1>Hellow From Server @@ < @Server.MachineName ! ></h1>
+
+                <h3>This is Page is made using Razro V3 syntax Date: @DateTime.Now.Day @DateTime.Now.DayOfWeek @DateTime.Now.Year</h3>
+
+
+
+                @* Syntax 1 *@
+                <section id="rotatorbg">
+                    <hr id="spiner" />
+                </section>
+
+                <p id="lable1" class="lables">
+                    Syntax 1
+                </p>
+
+                @{
+                    var fucks = new List<string> { "fuck1", "fuck2", "fuck3","fuck4" };
+
+                    <p>  These list items are printed using foreach loop</p>
+                    <text>Fucks list : </text>
+                    <ul>
+                        @foreach (string fuck in fucks)
+                        {
+                            <li>@fuck</li>
+                        }
+
+                    </ul>
+
+                }
+
+
+                @* Syntax 2 *@
+                <p id="lable2" class="lables"> Syntax 2</p>
+
+                @{
+                    var fucks2 = new List<string> { "fuck1", "fuck2", "fuck3" };
+                }
+                Fucks list :
+
+                <ul>
+                    @foreach (string fuck in fucks)
+            {
+                        <li>@fuck</li>
+                    }
+
+                </ul>
+
+                @* Syntax 3 *@
+                <p id="lable3" class="lables"> Syntax 3</p>
+                @{
+                    var fucks3 = new List<string> { "fuck1", "fuck2", "fuck3" };
+
+                    <text>Fucks list : </text>
+                    <ul>
+                        @foreach (string fuck in fucks)
+                        {
+                            <li>@fuck</li>
+                        }
+
+                    </ul>
+
+                }
+
+                <hr />
+                <text id="mytext" style="visibility:hidden"></text>
+
+
+
+
+            </div>
+
+
+            <!-- body two    -->
+
+            <div id="sectionRight">
+
+
+                <h1>Under Construction</h1>
+
+                <h3>This is Page is Under Construction </h3>
+
+            </div>
+
+        </div>
+        <!-- Scripts shits-->
+        <script src="~/myJavaScriptShit.js" async="async"></script>
+    </body>
+</html>

@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@*<div class="jumbotron">
+    <h1>Middle Vally Comunity Bank</h1>
+    <p class="lead">this bank provides with online shit </p>
+    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>*@
+
+
+
+<div class="row" style="margin-top:40px;">
+    <div class="col-md-6 margin-top-20">
+        <a href="#" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-circle-arrow-down"></span> Withdrawal</a>
+        <a href="#" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-flash"></span> Quick Cash $100</a>
+        <a href="#" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-question-sign"></span> Balance Inquiry</a>
+
+    </div>
+    <div class="col-md-6 margin-top-20">
+        <a href="#" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-print"></span> Print Statement</a>
+        <a href="#" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-transfer"></span> Transfer Funds</a>
+        <a href="#" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-circle-arrow-up" ></span> Deposit</a>
+
+    </div>
+</div>
+
+
+@*<div class="col-md-4">
+        <h2>Sign Up</h2>
+        <p>
+           Open an Account with us
+        </p>
+        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Powered by Electricity &raquo;</a></p>
+        <p>@Html.ActionLink("Register","Register","Account",null,new { @class="btn btn-default"})</p>
+    
+    </div>
+    <div class="col-md-4">
+        <h2>Login</h2>
+        <p>Access your Account</p>
+        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        <p>@Html.ActionLink("Login", "Login", "Account", null, new { @class = "btn btn-default" })</p>
+     </div>*@
+
+@*@{  var amounts = new List<Decimal> { 100, 25.50m, -40, 27 };
+}*@
+
+@*<ul>
+    @foreach (var amount in amounts) {
+        <li>@formateAcount(amount)</li>
+    }
+</ul>*@
+
+
+@*@helper formateAcount(decimal amount) {
+
+    var color = "green";
+    if (amount < 0) {
+
+        color = "red";
+    }
+    <span style="color:@color">@String.Format("{0:c}",amount)</span>
+}*@
+
+
+ @*You are using @Request.Browser.Browser, browsers nigga please change to Firefox*@

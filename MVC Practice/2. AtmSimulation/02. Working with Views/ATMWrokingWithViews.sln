@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATMWrokingWithViews", "ATMWrokingWithViews\ATMWrokingWithViews.csproj", "{B153A0D8-A8D1-46B6-A870-126A004434C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATMWrokingWithViews.Tests", "ATMWrokingWithViews.Tests\ATMWrokingWithViews.Tests.csproj", "{460B54E2-A933-47EF-BDA0-AC07F245C555}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B153A0D8-A8D1-46B6-A870-126A004434C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B153A0D8-A8D1-46B6-A870-126A004434C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B153A0D8-A8D1-46B6-A870-126A004434C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B153A0D8-A8D1-46B6-A870-126A004434C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{460B54E2-A933-47EF-BDA0-AC07F245C555}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{460B54E2-A933-47EF-BDA0-AC07F245C555}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{460B54E2-A933-47EF-BDA0-AC07F245C555}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{460B54E2-A933-47EF-BDA0-AC07F245C555}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

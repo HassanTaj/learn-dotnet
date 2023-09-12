@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+option csharp_namespace = "AnimeListServer.Protos";
+
+service Customer {
+
+	rpc GetCustomerInfo (CustomerInfoLookup) returns (CustomerModel);
+	rpc GetNewCustomers (VoidRequest) returns (stream CustomerModel);
+	rpc GetAllCustomers (VoidRequest) returns (CustomersModel);
+}
+
+message VoidRequest {
+}
+
+message CustomerInfoLookup {
+    int32 userId = 1; 
+}
+
+message CustomerModel {
+	string firstName =1;
+	string lastName = 2;
+	string emailAddress =3;
+}
+
+message CustomersModel {
+	repeated CustomerModel list =1;
+}
+
+message DefaultResponse {
+
+}

@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option csharp_namespace = "AnimeListServer.Protos";
+
+package Anime;
+
+service Anime {
+	rpc GetAnimeList (GetAnimeListRequest) returns (GetAnimeListResponse);
+}
+
+
+message GetAnimeListRequest {
+	string name =1;
+}
+
+
+message GetAnimeListResponse {
+	string name = 1;
+}

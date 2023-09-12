@@ -1,0 +1,27 @@
+﻿@using Microsoft.AspNet.Identity
+@* this if statement will cause different elements to be rendered
+    dependin on weather or not user is authenticated *@
+@if (Request.IsAuthenticated) {
+       /// this HTML.BeginForm will render a formStart tag using a specified action, controller httpMethod and adittional html attributes
+       /// the using keyword is normally for desposing of objects in memory at the end of the using block here it will also emitthe Form end tag where ever we put
+       /// its curly brace
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" })) {
+        /// antiforgertoken method will generate a hidden input containing a tokken that will be validate by the action
+        /// method that handles this form submission along witha matching a cookie to ensure that any request for this action
+        /// actually is generated from one of our forms and not from a malicious source in order for it to be validated
+        /// we'll need a filter to do that in our log off method in the AccountController
+         @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
+    }
+} else {
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}

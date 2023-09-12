@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcServer";
+
+package Fuck;
+
+service Fucker {
+	// fuck a bitch
+	rpc FuckABitch (FuckABitchReq) returns (FuckABitchReply);
+}
+
+
+message FuckABitchReq{
+	string name = 1;
+}
+
+message FuckABitchReply{
+	string message = 1;
+}

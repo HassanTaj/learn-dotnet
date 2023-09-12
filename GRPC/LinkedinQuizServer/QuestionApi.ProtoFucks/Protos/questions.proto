@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+option csharp_namespace = "Questions.Proto.Bufs";
+
+service QuestionsService {
+	rpc GetAllQuestionsStream (EmptyReq) returns (stream Question);
+	rpc GetAllQuestionsList (EmptyReq) returns (QuestionListResponse);
+	rpc GetQuestionById (DefaultFilterReq) returns (Question);
+	rpc CreateOrUpdate (CreateOrUpdateQuestionRequest) returns (Question);
+	rpc Delete (DefaultFilterReq) returns (Question);
+}
+
+// responses
+message Question {
+	int32 id=1;
+	string text=2;
+}
+
+message QuestionListResponse {
+	repeated Question Questions=1;
+}
+
+// requests
+message CreateOrUpdateQuestionRequest {
+	int32  id=1;
+	string text=2;
+}
+message EmptyReq {
+
+}
+
+message DefaultFilterReq {
+	string id = 1;
+}

@@ -1,4 +1,5 @@
-﻿using GraphQL.Types;
+﻿using GraphQL.Instrumentation;
+using GraphQL.Types;
 using TodoServer.Data;
 using TodoServer.Models;
 using TodoServer.Services.Events;
@@ -20,6 +21,7 @@ namespace TodoServer.Graphs.TodoGraph
             Query = new AutoRegisteringObjectGraphType<Query>();
             Mutation = new AutoRegisteringObjectGraphType<Mutation>();
             Subscription = new AutoRegisteringObjectGraphType<Subscription>();
+            FieldMiddleware.Use(new InstrumentFieldsMiddleware());
         }
     }
 }

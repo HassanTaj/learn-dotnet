@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/Site.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Explore California", "Index", "Home", null, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Tour", "Index", "Tour")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        <div class="row">
+            <div class="col-md-2 sidebar">
+                <img src="/Content/images/logo.gif" />
+            </div>
+
+            <div class="col-md-10">
+                @RenderBody()
+            </div>
+
+            <div class="row panel-group col-md-4" style="position:fixed; bottom:0; right:0; margin:0px 5px 10px 0px;">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h4 class="panel-title" data-toggle="collapse" href="#anime">
+                            <span>Live Support..<span class="badge pull-right" id="commentsCount">0</span></span>
+                        </h4>
+                    </div>
+                    <div id="anime" class="panel-collapse collapse">
+                        <div class="list-group" id="commentBody" style="height:300px; max-height:300px; overflow-y:scroll; scrollbar-track-color:#0094ff;">
+                        </div>
+                        <ul class="list-group" style="margin-bottom:-10px;">
+                            <li class="list-group-item" style="padding:2px 5px -0px 5px;">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input id="senderName" class="form-control" placeholder="Chat Name..." style="margin-right:5px;" />
+                                    </div>
+                                    <div class="input-group" style="width:100%; min-width:300px;">
+                                        <textarea id="commentField" class="form-control" placeholder="Complaint..." style="min-width:100%;  min-height: 50px; height: 40px;"></textarea>
+                                        @*<span class="input-group-addon btn btn-danger" id="cancle"><span class="glyphicon glyphicon-remove"></span></span>
+                                        <span class="input-group-addon btn btn-success active" id="post">Post<span class="glyphicon glyphicon-ok"></span></span>*@
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Explore California</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false);
+
+    <script src="~/Scripts/jquery.signalR-2.2.1.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script type="text/javascript">
+        $(function () {
+            //-------------------------------  HUB logic
+            var liveHelp = $.connection.liveHelpHub;
+
+            liveHelp.client.showMessage = function (userName, message) {
+                showMsgFromServer(userName, message);
+            };
+
+            liveHelp.client.showCallerOrOther = function (sysMsg) {
+                $("#commentBody").append(sysMsg);
+            }
+
+            $.connection.hub.start().done(function () {
+                // ------------------------ actions to be preformed 
+                $("#post").click(function () {
+                    //liveHelp.server.sendMessage(senderName, comment);
+                    if ($("#senderName").val() !="" && $("#commentField").val() !=""){
+                        liveHelp.server.sendMessage($("#senderName").val(), $("#commentField").val());
+                    }
+                });
+                // ----------------------- on  enter
+                $("#commentField").keydown(function (e) {
+                    if (e.keyCode == 13) {
+                        //alert("enter was pressed");
+                        //sendMessage();
+                        if ($("#senderName").val() != "" && $("#commentField").val() != "") {
+                            liveHelp.server.callerOrOther();
+                            liveHelp.server.sendMessage($("#senderName").val(), $("#commentField").val());
+                        }
+                    }
+                });
+
+                // ----------------------- on Ctrl + enter
+                //$("#commentField").keydown(function (e) {
+                //    if (e.ctrlKey && e.keyCode == 13) {
+                //        //alert("enter was pressed");
+                //        //sendMessage();
+                //        liveHelp.server.sendMessage($("#senderName").val(), $("#commentField").val());
+                //    }
+                //});
+
+                // ----------------------- on cancle
+                $("#cancle").click(function () { $("#commentField").val(''); });
+            });// ------------------------------------------- End of Hub logic
+
+
+        });
+
+        // this function works from client side server doesn't give a danm
+        //function showMsgWithJqSendNow(senderName,comment) {
+        //    //var comment = $("#commentField").val();
+        //    //var senderName = $("#senderName").val();
+        //    //new Date($.now());
+        //    var date = new Date();
+        //    var time = date.getHours() % 12 + ":" + date.getMinutes();
+        //    if (comment != "" && senderName != "") {
+        //        $("#commentBody").append(
+        //           "<p class='messageText' >" + senderName + " : <span style='margin-left:5px;'>" + comment +
+        //           "</span><br/><span style='color:#808080; text-align:right;'>sent at "+time+"</span></p>");
+        //        $("#commentsCount").text($("#commentBody p").length);
+        //        $("#commentBody").scrollTop($("#commentBody").height() * 500);
+        //        $("#commentField").val('');
+        //    }
+        //}
+
+        // this thing works everything from the serverside
+        function showMsgFromServer(senderName, comment) {
+            if (comment != " " && senderName != " ") {
+                $("#commentBody").append(
+                   "<p class='messageText' >" + senderName + " :<span style='margin-left:5px;'>" + comment + "</span></p>");
+                $("#commentsCount").text($("#commentBody .messageText").length);
+                $("#commentBody").scrollTop($("#commentBody").height() * 500);
+                $("#commentField").val('');
+            }
+        }
+    </script>
+
+</body>
+</html> 

@@ -1,0 +1,98 @@
+﻿/////////////////////////////////////////////////////////////////////////////////////////
+
+       Real time Web with Signal_ R
+/////////////////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////
+     Establishing Connection with Signal R
+/////////////////////////////////////////////////////////////////
+
+when you establish a connection between your clients and server 
+WIth Signal R there is no limit to how rich you can make the user Experience
+
+in this lesson we'll get to know what to do in order to establish a priesistant 
+connection to the server on a given page that allows for two way communication
+Most Importantly the Ability of the Server to sent message to the client without waiting for 
+a request form the client
+
+we'll use the previous solution 
+
+1. Add to our MV* application is something Called SignalR Hub
+  a. rightclick and add SignalR Hub (v2) it inherits form the Hub class
+     and will be responsible for sending n reciving messages to n from multiple clients in real time
+		
+      Once created
+		it will contain a method called Hello(); and that method will try 
+		to run a javascript function Hellow on all the connected clients 
+		but for now it won't do anyting but if we just define that hellow function
+		in a client script the we'll have to do some other simple thigns to add the signalR liberaries to the page
+		and then we can see the comunication in action 
+  b. change the name to Introduce just for fun
+  c. making clint script on index page of the home
+  d. in startup.config add app.MapSignalR();
+  e. write a @section scripts {} in the index page add Jquery liberaries to the end of the file inside the scripts section
+     write little java script/Jquery and get some outputs. 
+
+	 ----------------------------------------------------------------
+@section scripts {
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.signalR-2.2.1.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script>
+
+        // create a proxy connection to your hub
+        var simple = $.connection.simpleHub;
+        $(function () {
+            // call to the introduce server method and subscribe a call back function
+            simple.client.introduce = function (introduction) {
+                alert("Intro > "+introduction);
+            };
+
+            // make the connection with the server and show the user some response
+            //$.conection.start();
+            $.connection.hub.start().done(function () {
+                simple.server.hello();
+            });
+        });
+    </script>
+}
+	 ----------------------------------------------------------------
+/////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////
+			   Implimenting Live Help
+/////////////////////////////////////////////////////////////////
+
+1. Create a new Hub Class named LiveHelpHub
+   // even though the messages should be private but we'll broadcast to every user here
+2. Rename Hello method to SendMessage(senderName,Message)
+   b. create the showMessage in the client script
+ //  To send to  a single client
+  
+   // its common to store connection ids to data structure in memory
+   // and you can even add connection id's to groups
+
+//public void SendMessage(string senderName, string message) {
+//    Clients.All.showMessage(senderName, message);
+
+//    // to add clients to a group
+//      Groups.Add(Context.ConnectionId, "Employees");
+//   // then if you want to send a message to only members of employee group
+//      Clients.Group("Employees").showMessage(senderName, "This is a message for the Employees Group.");
+//  //  then if you want to send message to only the client who invoked this method
+//   // we can either do
+//        Clients.Client(Context.ConnectionId);
+
+//  //  or a shortcut
+
+//    Clients.Caller.showMessage("system", "Sent At : " + DateTime.Now.ToString("h:mm:tt")); // this works fine
+//  //  if you want to send message to everyone else  but not the caller you can use
+//      Clients.Others.showMessage("system", "recieved at: " + DateTime.Now.ToString("h:mm:tt"));
+//}
+
+
+/////////////////////////////////////////////////////////////////
+
+
+//////////////////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,5 @@
+﻿
+message MyMessage {
+	int32 Id = 1;
+	string Text = 2;
+}
