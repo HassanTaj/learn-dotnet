@@ -112,10 +112,10 @@ class Program
 
 ## **Problems Solved by Abstract Factory**
 
-✅ **Encapsulation of Object Families** – Ensures that related objects are created together, maintaining consistency.
-✅ **Decouples Implementation from Clients** – Clients depend on interfaces rather than concrete classes, improving maintainability.
-✅ **Enhances Scalability** – Adding a new product family (e.g., another smartphone brand) only requires implementing a new factory.
-✅ **Improves Code Maintainability** – Reduces dependencies between classes, leading to cleaner and more modular code.
+✅ **Encapsulation of Object Families** – Ensures that related objects are created together, maintaining consistency.  
+✅ **Decouples Implementation from Clients** – Clients depend on interfaces rather than concrete classes, improving maintainability.  
+✅ **Enhances Scalability** – Adding a new product family (e.g., another smartphone brand) only requires implementing a new factory.  
+✅ **Improves Code Maintainability** – Reduces dependencies between classes, leading to cleaner and more modular code.  
 
 ## **Conclusion**
 
