@@ -33,7 +33,7 @@ public interface IBookIterator
 }
 ```
 
-Step 2: Define Aggregate Interface
+### Step 2: Define Aggregate Interface
 
 ``` csharp
 public interface IBookCollection
