@@ -113,13 +113,12 @@ class Program
 | Composability         | ✅ Can combine multiple decorators           | ❌ Inheritance tree can become deep and rigid           |
 | Maintainability       | ✅ Easier to maintain (modular features)     | ❌ Can lead to code duplication and complex hierarchies |
 
+### Problems Solved by the Decorator Pattern
 
-Problems Solved by the Decorator Pattern
-
-✅ Flexible Object Extension – Enables dynamic behavior addition without changing the original object.
-✅ Reduced Subclassing – Eliminates the need for multiple subclasses, reducing complexity and promoting reusable code.
-✅ Modular Design – Each decorator represents a specific feature or behavior, leading to a cleaner and more modular design.
-✅ Runtime Composition – Offers the ability to mix and match behaviors at runtime, making it easier to create customized objects.
+- ✅ **Flexible Object Extension** – Enables dynamic behavior addition without changing the original object.
+- ✅ **Reduced Subclassing** – Eliminates the need for multiple subclasses, reducing complexity and promoting reusable code.
+- ✅ **Modular Design** – Each decorator represents a specific feature or behavior, leading to a cleaner and more modular design.
+- ✅ **Runtime Composition** – Offers the ability to mix and match behaviors at runtime, making it easier to create customized objects.
 
 
 ### Conclusion
