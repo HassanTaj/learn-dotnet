@@ -93,10 +93,10 @@ class Program
 
 ### Problems Solved by Singleton Pattern
 
-✅ **Controlled Access** – Only one instance manages access to a resource.
-✅ **Global Access Point** – Instance can be accessed anywhere in the application.
-✅ **Lazy Initialization** – Instance is created only when needed.
-✅ **Thread Safety** – Can be implemented to ensure safe access in multi-threaded environments.
+- ✅ **Controlled Access** – Only one instance manages access to a resource.
+- ✅ **Global Access Point** – Instance can be accessed anywhere in the application.
+- ✅ **Lazy Initialization** – Instance is created only when needed.
+- ✅ **Thread Safety** – Can be implemented to ensure safe access in multi-threaded environments.
 
 
 ### Conclusion
