@@ -119,10 +119,10 @@ class Program
 
 
 ### Problems Solved by Builder Pattern
-- Object Construction Complexity – Helps manage the complexity of constructing objects with many parts or configurations.
-- Separation of Concerns – Separates the construction logic from the object's representation, which makes the code easier to maintain and test.
-- Readable Code – Using a builder to construct objects leads to clearer and more readable client code compared to using constructors with long parameter lists.
-- Flexibility – The builder allows the creation of different variations of an object, reducing the need for multiple constructors.
+- ✅ Object Construction Complexity – Helps manage the complexity of constructing objects with many parts or configurations.
+- ✅ Separation of Concerns – Separates the construction logic from the object's representation, which makes the code easier to maintain and test.
+- ✅ Readable Code – Using a builder to construct objects leads to clearer and more readable client code compared to using constructors with long parameter lists.
+- ✅ Flexibility – The builder allows the creation of different variations of an object, reducing the need for multiple constructors.
 
 ### Conclusion
 
