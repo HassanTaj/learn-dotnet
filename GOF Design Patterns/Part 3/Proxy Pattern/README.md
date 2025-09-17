@@ -40,7 +40,7 @@ public interface IImage
 
 ## Step 2: Create the Real Subject
 
-```chsarp
+```csharp
 public class RealImage : IImage
 {
     private readonly string filename;
