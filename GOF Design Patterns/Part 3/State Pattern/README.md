@@ -36,7 +36,7 @@ public interface IState
 }
 ```
 
-## Step 2: Create Concrete States
+### Step 2: Create Concrete States
 
 ```csharp
 public class PlayingState : IState
@@ -67,7 +67,7 @@ public class StoppedState : IState
 }
 ```
 
-## Step 3: Create the Context
+### Step 3: Create the Context
 
 ```csharp
 public class MediaPlayer
@@ -91,7 +91,7 @@ public class MediaPlayer
 }
 ```
 
-## Step 4: Use State in Client Code
+### Step 4: Use State in Client Code
 
 ```csharp
 class Program
@@ -107,7 +107,7 @@ class Program
 }
 ```
 
-## Comparison: State vs Strategy
+### Comparison: State vs Strategy
 
 | Feature               | State Pattern                              | Strategy Pattern                         |
 | --------------------- | ------------------------------------------ | ---------------------------------------- |
