@@ -104,20 +104,20 @@ class Program
 ```
 ## **Comparison: Bridge vs Adapter**
 
-| Feature      | Bridge Pattern                            | Adapter Pattern                            |
-| ------------ | ----------------------------------------- | ------------------------------------------ |
-| Purpose      | Decouple abstraction from implementation  | Make incompatible interfaces work together |
-| Focus        | Flexibility and extensibility             | Compatibility and reuse                    |
-| Relationship | Built at design time                      | Often applied retroactively                |
-| Best for     | Evolving systems with multiple dimensions | Integrating legacy code with new systems   |
+| Feature               | Bridge Pattern                              | Adapter Pattern                                       |
+| --------------------- | ------------------------------------------- | ----------------------------------------------------- |
+| Purpose               | ✅ Decouples abstraction from implementation | ✅ Makes incompatible interfaces work together        |
+| Focus                 | ✅ Flexibility and extensibility             | ✅ Compatibility and reuse                            |
+| Relationship          | ✅ Built at design time                      | ✅ Often applied retroactively                        |
+| Best for              | ✅ Evolving systems with multiple dimensions | ✅ Integrating legacy code with new systems           |
 
+### Problems Solved by the Bridge Pattern
 
-## **Problems Solved by Bridge Pattern**
+- ✅ **Decouples Abstraction and Implementation** – Allows both to evolve independently.  
+- ✅ **Reduces Class Explosion** – Avoids creating separate subclasses for every abstraction-implementation combination.  
+- ✅ **Improves Extensibility** – New abstractions or implementations can be added without modifying existing code.  
+- ✅ **Encourages Composition over Inheritance** – Promotes cleaner, more maintainable designs.  
 
-✅ Decouples Abstraction and Implementation – Both can change independently.
-✅ Reduces Class Explosion – Avoids creating multiple classes for every combination of abstraction and implementation.
-✅ Improves Extensibility – New abstractions or implementations can be introduced without modifying existing code.
-✅ Encourages Composition over Inheritance – Promotes cleaner, more maintainable designs.
 
 ## **Conclusion**
 
