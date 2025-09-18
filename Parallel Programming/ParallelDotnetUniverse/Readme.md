@@ -53,11 +53,9 @@ Console.WriteLine($"Length of Text2: {t3.Result}");
 
 ### 3. Canceling Tasks
 
-Task cancellation is managed through CancellationTokenSource and CancellationToken.
-
-A task can be canceled by signaling the token.
-
-Multiple tokens can be linked for composite cancellation.
+- Task cancellation is managed through `CancellationTokenSource` and `CancellationToken`.
+- A task can be canceled by signaling the token.
+- Multiple tokens can be linked for composite cancellation.
 
 ```csharp
 var cts = new CancellationTokenSource();
@@ -111,11 +109,9 @@ emergency.Cancel();
 
 Tasks can pause execution in different ways:
 
-Thread.Sleep() – Pauses execution and yields the processor.
-
-SpinWait / SpinUntil – Keeps CPU busy without yielding (less efficient, but doesn’t lose queue position).
-
-Waiting with CancellationToken – Waits with a timeout and reacts to cancellation.
+- `Thread.Sleep()` – Pauses execution and yields the processor.
+- `SpinWait / SpinUntil` – Keeps CPU busy without yielding (less efficient, but doesn’t lose queue position).
+- `Waiting with CancellationToken` – Waits with a timeout and reacts to cancellation.
 
 ```csharp
 var cts = new CancellationTokenSource();
@@ -135,11 +131,9 @@ cts.Cancel();
 
 ### 5. Waiting for Tasks
 
-Task.Wait() – Waits for one task to finish.
-
-Task.WaitAll() – Waits for all tasks.
-
-Task.WaitAny() – Waits for any one task.
+- `Task.Wait()` – Waits for one task to finish.
+- `Task.WaitAll()` – Waits for all tasks.
+- `Task.WaitAny()` – Waits for any one task.
 
 You can also specify timeouts and cancellation tokens.
 
@@ -171,8 +165,8 @@ Console.WriteLine($"Task2 status: {t2.Status}");
 
 ### 6. Exception Handling
 
-When multiple tasks throw exceptions, they are wrapped in an AggregateException.
-Exceptions can be handled selectively using Handle().
+- When multiple tasks throw exceptions, they are wrapped in an `AggregateException`.
+- Exceptions can be handled selectively using `Handle()`.
 
 ```csharp
 public static void ExceptionTest()
@@ -205,3 +199,10 @@ public static void ExceptionTest()
     }
 }
 ```
+
+## Key Takeaways
+
+- ✅ **Tasks are the building blocks** of parallel programming in .NET.  
+- ✅ They support **asynchronous execution, cancellation, timeouts, and coordination**.  
+- ✅ **AggregateException** is the standard way to deal with multiple exceptions.  
+- ✅ **Task APIs** allow building scalable, responsive applications with ease.  
