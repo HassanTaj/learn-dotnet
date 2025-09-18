@@ -88,8 +88,6 @@ A Mutex is a synchronization primitive similar to lock, but:
   - Works across processes.
   - Can be named for global system-wide synchronization.
 
-Example
-
 ```csharp
 var mutex = new Mutex();
 mutex.WaitOne();
@@ -110,8 +108,7 @@ var mutex = new Mutex(false, appName);
 - `ReaderWriterLockSlim` allows:
   - Multiple threads to read simultaneously.
   - Only one writer at a time.
-
-### Example
+  - 
 ```csharp
 padlock.EnterUpgradeableReadLock();
 if (condition) {
